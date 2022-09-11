@@ -21,6 +21,9 @@ const SignUp = () => {
     // Create a new user with Firebase
     try {
       const userAuth = await createUserWithEmailAndPassword(auth, email, password);
+      setDoc(doc(db, "users", email), {
+        movieLoved: [],
+      });
       return await updateProfile(userAuth.user, {})
         .then(
           // Dispatch the user information for persistence in the redux state
@@ -38,9 +41,7 @@ const SignUp = () => {
     } catch (err) {
       alert(err);
     }
-    setDoc(doc(db, "users", email), {
-      movieLoved: [],
-    });
+
   };
 
   return (
