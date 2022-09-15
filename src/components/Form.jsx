@@ -17,7 +17,7 @@ const Form = ({ title, subtitle, sign, link, onSubmit }) => {
         <img src={cover} alt="/" className="w-full h-full object-cover" />
       </div>
       <div className="container mx-auto px-4 text-white absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
-        <div className="max-w-[450px] h-[600px] bg-black/75 text-white mx-auto">
+        <div className="max-w-[450px] bg-black/75 text-white mx-auto">
           <div className="mx-auto py-16 max-w-[320px]">
             <h1 className="text-3xl font-bold">{title}</h1>
             <form onSubmit={submitHandler}>
