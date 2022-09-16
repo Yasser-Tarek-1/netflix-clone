@@ -11,7 +11,7 @@ const Form = ({ title, subtitle, sign, link, onSubmit }) => {
     e.target[1].value = "";
   };
   return (
-    <div className="w-full h-[calc(100vh-100px)] relative">
+    <div className="w-full h-screen relative">
       <div className="opacity-0 sm:opacity-100 absolute top-0 left-0 w-full h-full">
         <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
         <img src={cover} alt="/" className="w-full h-full object-cover" />
@@ -20,7 +20,10 @@ const Form = ({ title, subtitle, sign, link, onSubmit }) => {
         <div className="max-w-[450px] bg-black/75 text-white mx-auto">
           <div className="mx-auto py-16 max-w-[320px]">
             <h1 className="text-3xl font-bold">{title}</h1>
-            <form onSubmit={submitHandler}>
+            <form
+              onSubmit={submitHandler}
+              className="bg-black sm:bg-transparent relative z-[900]"
+            >
               <input
                 type="email"
                 placeholder="Email"
