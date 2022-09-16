@@ -6,7 +6,7 @@ import { logout } from "../store/userSlice";
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log(user)
+  console.log(user);
 
   return (
     <div className="w-full py-6 absolute z-[100]">
@@ -25,14 +25,14 @@ const Navbar = () => {
             {user && (
               <>
                 <Link to="/account">
-                  <button className=" text-white rounded-sm py-2 md:py-1 w-[90px] ml-4 font-normal text-xs md:text-lg">
+                  <button className=" text-white rounded-sm py-2 md:py-1 w-[90px] ml-1 sm:ml-4 font-normal text-xs md:text-lg">
                     Account
                   </button>
                 </Link>
                 <Link to="/">
                   <button
-                    onClick={() => dispatch(logout())}  
-                    className="bg-[#e50914] text-white rounded-sm py-2 md:py-1 w-[90px] ml-4 font-normal text-xs md:text-lg"
+                    onClick={() => dispatch(logout())}
+                    className="bg-[#e50914] text-white rounded-sm py-2 md:py-1 w-[90px] ml-1 sm:ml-4 font-normal text-xs md:text-lg"
                   >
                     Sign Out
                   </button>
@@ -42,12 +42,12 @@ const Navbar = () => {
             {!user && (
               <>
                 <Link to="/signup">
-                  <button className=" text-white rounded-sm py-2 md:py-1 w-[90px] ml-4 font-normal text-xs md:text-lg">
+                  <button className=" text-white rounded-sm py-2 md:py-1 w-[90px] ml-1 sm:ml-4 font-normal text-xs md:text-lg">
                     Sign Up
                   </button>
                 </Link>
                 <Link to="/signin">
-                  <button className="bg-[#e50914] text-white rounded-sm py-2 md:py-1 w-[90px] ml-4 font-normal text-xs md:text-lg">
+                  <button className="bg-[#e50914] text-white rounded-sm py-2 md:py-1 w-[90px] ml-1 sm:ml-4 font-normal text-xs md:text-lg">
                     Sign In
                   </button>
                 </Link>

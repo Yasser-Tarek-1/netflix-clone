@@ -11,7 +11,7 @@ const Form = ({ title, subtitle, sign, link, onSubmit }) => {
     e.target[1].value = "";
   };
   return (
-    <div className="w-full h-screen relative">
+    <div className="w-full h-screen relative z-[999]">
       <div className="opacity-0 sm:opacity-100 absolute top-0 left-0 w-full h-full">
         <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
         <img src={cover} alt="/" className="w-full h-full object-cover" />
