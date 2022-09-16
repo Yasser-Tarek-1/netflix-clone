@@ -22,7 +22,7 @@ const Form = ({ title, subtitle, sign, link, onSubmit }) => {
             <h1 className="text-3xl font-bold">{title}</h1>
             <form
               onSubmit={submitHandler}
-              className="bg-black sm:bg-transparent relative z-[900]"
+       
             >
               <input
                 type="email"

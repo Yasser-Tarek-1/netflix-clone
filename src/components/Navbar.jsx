@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/userSlice";
 
@@ -7,9 +7,24 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   console.log(user);
+  const [loc, setloc] = useState(false);
+
+  const location = useLocation();
+  console.log(location.pathname);
+  useEffect(() => {
+    if (location.pathname === "/signin" || location.pathname === "/signup") {
+      setloc(true);
+    } else {
+      setloc(false);
+    }
+  }, [location.pathname]);
 
   return (
-    <div className="w-full py-6 absolute z-[100]">
+    <div
+      className={`w-full py-6 ${
+        loc ? "sm:absolute sm:z-[100]" : "absolute z-[100]"
+      }`}
+    >
       <div className="container px-4 mx-auto">
         <div className="flex justify-between items-center">
           <Link to="/">
