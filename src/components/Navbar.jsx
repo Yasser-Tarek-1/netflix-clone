@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <div
       className={`w-full py-6 ${
-        loc ? "sm:absolute sm:z-[100]" : "absolute z-[100]"
+        loc ? "sm:absolute sm:z-[100] h-full relative" : "absolute z-[100]"
       }`}
     >
       <div className="container px-4 mx-auto">
