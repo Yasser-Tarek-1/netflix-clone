@@ -8,6 +8,7 @@ import { Navigation } from "swiper";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import Div from "../layout/Container";
 
 const Slides = ({ title, movieURL }) => {
   const [movie, setMovie] = useState([]);
@@ -25,8 +26,8 @@ const Slides = ({ title, movieURL }) => {
   }, [movieURL]);
 
   return (
-    <div className="w-full py-6">
-      <div className="container mx-auto px-4">
+    <Div className={"py-6"}>
+      <Div.Container>
         <h3 className="text-white font-bold text-2xl mt-4">{title}</h3>
         <div className="flex mt-8 overflow-hidden">
           <Swiper
@@ -58,8 +59,8 @@ const Slides = ({ title, movieURL }) => {
             })}
           </Swiper>
         </div>
-      </div>
-    </div>
+      </Div.Container>
+    </Div>
   );
 };
 

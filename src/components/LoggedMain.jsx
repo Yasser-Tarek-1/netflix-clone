@@ -1,4 +1,5 @@
 import React from "react";
+import Div from "../layout/Container";
 
 const LoggedMain = ({ randomMovie }) => {
   const overviewHandler = (str, num) => {
@@ -10,14 +11,14 @@ const LoggedMain = ({ randomMovie }) => {
     }
   };
   return (
-    <div className="w-full h-[700px] relative">
+    <Div className={"h-[700px] relative"}>
       <div className="absolute left-0 top-0 w-full h-full from-black bg-gradient-to-r"></div>
       <img
         src={`https://image.tmdb.org/t/p/original/${randomMovie?.backdrop_path}`}
         alt="main"
         className="w-full h-full object-cover"
       />
-      <div className="container px-4 mx-auto text-white w-full">
+      <Div.Container className={"text-white"}>
         <div className="absolute top-[40%]">
           <h3 className="text-3xl sm:text-6xl font-bold">
             {randomMovie?.title}
@@ -37,8 +38,8 @@ const LoggedMain = ({ randomMovie }) => {
             {overviewHandler(randomMovie?.overview, 250)}
           </p>
         </div>
-      </div>
-    </div>
+      </Div.Container>
+    </Div>
   );
 };
 

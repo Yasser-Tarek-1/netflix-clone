@@ -2,11 +2,12 @@ import React from "react";
 
 import tvImg from "../assets/tv.png";
 import tvVideo from "../assets/video-tv-0819.m4v";
+import Div from "../layout/Container";
 
 export const Enjoy = () => {
   return (
-    <div className="w-fill">
-      <div className="container px-4 mx-auto py-8">
+    <Div>
+      <Div.Container className={"py-8"}>
         <div className="flex flex-col lg:flex-row text-white justify-evenly items-center">
           <div className="max-w-[600px]">
             <h3 className="text-3xl sm:text-5xl font-bold mb-2 sm:mb-4 text-center lg:text-left">
@@ -32,8 +33,8 @@ export const Enjoy = () => {
             />
           </div>
         </div>
-      </div>
-    </div>
+      </Div.Container>
+    </Div>
   );
 };
 

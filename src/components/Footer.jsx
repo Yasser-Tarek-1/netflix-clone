@@ -1,12 +1,13 @@
 import React from "react";
+import Div from "../layout/Container";
 import Br from "./Br";
 
 const Footer = () => {
   return (
     <>
       <Br />
-      <div className="w-full">
-        <div className="container px-8 py-10 text-[#737373] max-w-[850px] mx-auto">
+      <Div>
+        <Div.Container className={"py-10 text-[#737373] max-w-[850px]"}>
           <h3>
             <a href="/" className="hover:underline">
               Questions? Contact us.
@@ -68,8 +69,8 @@ const Footer = () => {
             </div>
           </div>
           <p className="text-sm my-4">Netflix Egypt</p>
-        </div>
-      </div>
+        </Div.Container>
+      </Div>
     </>
   );
 };

@@ -29,9 +29,8 @@ const SavedShow = () => {
         return item.id !== Id;
       });
       await updateDoc(movieRef, {
-        movieLoved: result
-      }
-      )
+        movieLoved: result,
+      });
     } catch (err) {
       console.log(err);
     }

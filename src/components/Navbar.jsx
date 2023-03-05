@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/userSlice";
+import Div from "../layout/Container";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
@@ -20,12 +21,12 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <div
-      className={`w-full py-6 ${
+    <Div
+      className={`py-6 ${
         loc ? "sm:absolute sm:z-[100] h-full relative" : "absolute z-[100]"
       }`}
     >
-      <div className="container px-4 mx-auto">
+      <Div.Container>
         <div className="flex justify-between items-center">
           <Link to="/">
             <div className="w-[90px] h-[24px] md:w-[134px] md:h-[40px] lg:w-[144px] lg:h-[50px]">
@@ -70,8 +71,8 @@ const Navbar = () => {
             )}
           </div>
         </div>
-      </div>
-    </div>
+      </Div.Container>
+    </Div>
   );
 };
 

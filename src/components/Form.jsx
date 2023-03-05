@@ -2,6 +2,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import cover from "../assets/home-netflex.jpg";
+import Div from "../layout/Container";
 
 const Form = ({ title, subtitle, sign, link, onSubmit }) => {
   const submitHandler = (e) => {
@@ -11,19 +12,20 @@ const Form = ({ title, subtitle, sign, link, onSubmit }) => {
     e.target[1].value = "";
   };
   return (
-    <div className="w-full h-screen relative">
+    <Div className={"h-screen relative"}>
       <div className="opacity-0 sm:opacity-100 absolute top-0 left-0 w-full h-full">
         <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
         <img src={cover} alt="/" className="w-full h-full object-cover" />
       </div>
-      <div className="container mx-auto px-4 text-white absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
+      <Div.Container
+        className={
+          "text-white absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-[999]"
+        }
+      >
         <div className="max-w-[450px] bg-black/75 text-white mx-auto">
           <div className="mx-auto py-16 max-w-[320px]">
             <h1 className="text-3xl font-bold">{title}</h1>
-            <form
-              onSubmit={submitHandler}
-       
-            >
+            <form onSubmit={submitHandler}>
               <input
                 type="email"
                 placeholder="Email"
@@ -71,8 +73,8 @@ const Form = ({ title, subtitle, sign, link, onSubmit }) => {
             </p>
           </div>
         </div>
-      </div>
-    </div>
+      </Div.Container>
+    </Div>
   );
 };
 

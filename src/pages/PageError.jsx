@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import page404 from "../assets/page404.png";
+import Div from "../layout/Container";
 
 const PageError = () => {
   return (
-    <div className="w-full h-screen">
+    <Div className={" h-screen"}>
       <div className="absolute w-full h-full top-0 left-0 bg-black/30 z-10"></div>
       <img
         src={page404}
@@ -30,7 +31,7 @@ const PageError = () => {
           Error Code <span className="font-bold">NSES-404</span>
         </p>
       </div>
-    </div>
+    </Div>
   );
 };
 

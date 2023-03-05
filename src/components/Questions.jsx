@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Div from "../layout/Container";
 
 import Subscribe from "./Subscribe";
 
@@ -54,8 +55,8 @@ const Questions = () => {
   };
 
   return (
-    <div className="w-full py-20">
-      <div className="container mx-auto px-4">
+    <Div className={"py-20"}>
+      <Div.Container>
         <h2 className="text-white text-2xl sm:text-4xl md:text-6xl font-bold text-center mb-6 sm:mb-10">
           Frequently Asked Questions
         </h2>
@@ -274,8 +275,8 @@ const Questions = () => {
           </p>
           <Subscribe />
         </div>
-      </div>
-    </div>
+      </Div.Container>
+    </Div>
   );
 };
 

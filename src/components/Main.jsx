@@ -1,11 +1,12 @@
 import React from "react";
 
 import homeImg from "../assets/home-netflex.jpg";
+import Div from "../layout/Container";
 import Subscribe from "./Subscribe";
 
 const Main = () => {
   return (
-    <div className="w-full h-[750px] relative">
+    <Div className={"h-[750px] relative"}>
       <div className="absolute left-0 top-0 w-full h-full from-black bg-gradient-to-r"></div>
       <img src={homeImg} alt="main" className="w-full h-full object-cover" />
       <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] w-[90%] md:max-w-[750px] z-20">
@@ -20,7 +21,7 @@ const Main = () => {
         </p>
         <Subscribe />
       </div>
-    </div>
+    </Div>
   );
 };
 

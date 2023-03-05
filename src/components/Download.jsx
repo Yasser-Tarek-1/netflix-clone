@@ -1,4 +1,5 @@
 import React from "react";
+import Div from "../layout/Container";
 
 import mobileImg from "../assets/mobile-0819.jpg";
 import boxshot from "../assets/boxshot.png";
@@ -6,8 +7,8 @@ import icon from "../assets/download-icon.gif";
 
 export const Download = () => {
   return (
-    <div className="w-fill">
-      <div className="container px-4 mx-auto py-8">
+    <Div>
+      <Div.Container className={"py-8"}>
         <div className="flex flex-col lg:flex-row-reverse text-white justify-evenly items-center">
           <div className="max-w-[600px]">
             <h3 className="text-3xl sm:text-5xl font-bold mb-2 sm:mb-4 text-center lg:text-left">
@@ -33,8 +34,8 @@ export const Download = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </Div.Container>
+    </Div>
   );
 };
 
