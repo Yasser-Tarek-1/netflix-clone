@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../store/userSlice";
+// import { useSelector } from "react-redux";
+// import { useDispatch } from "react-redux";
+// import { logout } from "../store/userSlice";
 import Div from "../layout/Container";
+import { toast } from "react-hot-toast";
+import Button from "../layout/Button";
 
 const Navbar = () => {
-  const { user } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  console.log(user);
+  // const { user } = useSelector((state) => state.user);
+  // const dispatch = useDispatch();
   const [loc, setloc] = useState(false);
 
+  const userFromLocal = JSON.parse(localStorage.getItem("user"));
+
   const location = useLocation();
-  console.log(location.pathname);
   useEffect(() => {
     if (location.pathname === "/signin" || location.pathname === "/signup") {
       setloc(true);
@@ -19,6 +22,12 @@ const Navbar = () => {
       setloc(false);
     }
   }, [location.pathname]);
+
+  const logOut = () => {
+    // dispatch(logout());
+    toast.success("Logout success");
+    localStorage.removeItem("user");
+  };
 
   return (
     <Div
@@ -38,34 +47,25 @@ const Navbar = () => {
             </div>
           </Link>
           <div className="flex w-[60%] items-center justify-end">
-            {user && (
+            {userFromLocal && (
               <>
                 <Link to="/account">
-                  <button className=" text-white rounded-sm py-2 md:py-1 w-[90px] ml-1 sm:ml-4 font-normal text-xs md:text-lg">
-                    Account
-                  </button>
+                  <Button>Account</Button>
                 </Link>
                 <Link to="/">
-                  <button
-                    onClick={() => dispatch(logout())}
-                    className="bg-[#e50914] text-white rounded-sm py-2 md:py-1 w-[90px] ml-1 sm:ml-4 font-normal text-xs md:text-lg"
-                  >
+                  <Button onClick={logOut} className={"bg-main"}>
                     Sign Out
-                  </button>
+                  </Button>
                 </Link>
               </>
             )}
-            {!user && (
+            {!userFromLocal && (
               <>
                 <Link to="/signup">
-                  <button className=" text-white rounded-sm py-2 md:py-1 w-[90px] ml-1 sm:ml-4 font-normal text-xs md:text-lg">
-                    Sign Up
-                  </button>
+                  <Button>Sign Up</Button>
                 </Link>
                 <Link to="/signin">
-                  <button className="bg-[#e50914] text-white rounded-sm py-2 md:py-1 w-[90px] ml-1 sm:ml-4 font-normal text-xs md:text-lg">
-                    Sign In
-                  </button>
+                  <Button className={"bg-main"}>Sign In</Button>
                 </Link>
               </>
             )}

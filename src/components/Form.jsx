@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
 import cover from "../assets/home-netflex.jpg";
 import Div from "../layout/Container";
 
-const Form = ({ title, subtitle, sign, link, onSubmit }) => {
+import { inputDump } from "../store/emailSlice";
+
+const Form = ({ title, subtitle, sign, link, onSubmit, email }) => {
+  const [emailFaild, setEmailFaild] = useState("");
+  const [passwordFaild, setPasswordFaild] = useState("");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setEmailFaild(email);
+  }, [email]);
+
   const submitHandler = (e) => {
     e.preventDefault();
-    onSubmit({ email: e.target[0].value, password: e.target[1].value });
-    e.target[0].value = "";
-    e.target[1].value = "";
+    onSubmit({ email: emailFaild, password: passwordFaild });
+    setEmailFaild("");
+    setPasswordFaild("");
+    dispatch(inputDump(""));
   };
   return (
     <Div className={"h-screen relative"}>
@@ -31,16 +44,20 @@ const Form = ({ title, subtitle, sign, link, onSubmit }) => {
                 placeholder="Email"
                 className="bg-[#333] focus:outline-none p-3 mt-6 w-full rounded"
                 required
+                onChange={(e) => setEmailFaild(e.target.value)}
+                value={emailFaild || ""}
               />
               <input
                 type="password"
                 placeholder="Password"
                 className="bg-[#333] focus:outline-none p-3  mt-5 w-full rounded"
                 required
+                onChange={(e) => setPasswordFaild(e.target.value)}
+                value={passwordFaild || ""}
               />
               <button
                 type="submit"
-                className="focus:outline-none p-3 mt-6 w-full rounded bg-[#e50914] text-lg "
+                className="bg-main focus:outline-none p-3 mt-6 w-full rounded text-lg hover:bg-[#c30e1a] transition-all duration-200"
               >
                 {title}
               </button>

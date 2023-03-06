@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -11,35 +11,44 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import PageError from "./pages/PageError";
 
-import { useDispatch } from "react-redux";
-import { login, logout } from "./store/userSlice";
-import { auth, onAuthStateChanged } from "./firebase";
+// import { useDispatch } from "react-redux";
+// import { login, logout } from "./store/userSlice";
+// import { auth, onAuthStateChanged } from "./firebase";
 
 import ProtectedRouts from "./components/ProtectedRouts";
 import ProtectedRoutsOut from "./components/ProtectedRoutsOut";
 
+import { Toaster } from "react-hot-toast";
+
 const App = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // check at page load if a user is authenticated
-  useEffect(() => {
-    onAuthStateChanged(auth, (userAuth) => {
-      if (userAuth) {
-        // user is logged in, send the user's details to redux, store the current user in the state
-        dispatch(
-          login({
-            email: userAuth.email,
-            uid: userAuth.uid,
-          })
-        );
-      } else {
-        dispatch(logout());
-      }
-    });
-  }, [dispatch]);
+  // React.useEffect(() => {
+  //   onAuthStateChanged(auth, (userAuth) => {
+  //     if (userAuth) {
+  //       // user is logged in, send the user's details to redux, store the current user in the state
+  //       dispatch(
+  //         login({
+  //           email: userAuth.email,
+  //           uid: userAuth.uid,
+  //         })
+  //       );
+  //     } else {
+  //       dispatch(logout());
+  //     }
+  //   });
+  // }, [dispatch]);
 
   return (
     <div className="App">
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          duration: 2000,
+        }}
+      />
       <Navbar />
       <Routes>
         <Route

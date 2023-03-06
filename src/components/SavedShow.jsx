@@ -6,23 +6,27 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 
 import { db } from "../firebase";
-import { updateDoc, doc, onSnapshot } from "firebase/firestore";
-import { useSelector } from "react-redux";
+import { updateDoc, doc } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
+// import { useSelector } from "react-redux";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { toast } from "react-hot-toast";
 
 const SavedShow = () => {
-  const { user } = useSelector((state) => state.user);
+  // const { user } = useSelector((state) => state.user);
   const [movies, setMovies] = useState([]);
 
+  const userFromLocal = JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
-    onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+    onSnapshot(doc(db, "users", `${userFromLocal?.email}`), (doc) => {
       setMovies(doc.data()?.movieLoved);
     });
-  }, [user?.email]);
+  }, [userFromLocal?.email]);
 
-  const movieRef = doc(db, "users", `${user?.email}`);
+  const movieRef = doc(db, "users", `${userFromLocal?.email}`);
   const deleteShow = async (Id) => {
     try {
       const result = movies.filter((item) => {
@@ -31,8 +35,9 @@ const SavedShow = () => {
       await updateDoc(movieRef, {
         movieLoved: result,
       });
+      toast.success("Removed");
     } catch (err) {
-      console.log(err);
+      toast.error(err);
     }
   };
 
@@ -60,11 +65,8 @@ const SavedShow = () => {
       >
         {movies?.map((item) => {
           return (
-            <SwiperSlide>
-              <div
-                key={item.id}
-                className="relative group cursor-pointer w-[120px] sm:w-[150px] lg:w-[200px]  flex items-center justify-center"
-              >
+            <SwiperSlide key={item.id}>
+              <div className="relative group cursor-pointer w-[120px] sm:w-[150px] lg:w-[200px]  flex items-center justify-center">
                 <div className="absolute top-0 left-[-1px] bg-gradient-to-r from-black  w-full h-full opacity-0 group-hover:opacity-[100%] transition-all duration-150">
                   <h3 className="flex text-white text-xl font-semibold justify-center items-center h-full px-2">
                     {item.title}
