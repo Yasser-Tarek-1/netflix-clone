@@ -1,4 +1,4 @@
-const api_key = "223f42f6aec7980546ab7d13ad0df601";
+const api_key = process.env.REACT_APP_FIREBASE_API_KEY_MOVIE_LINKS;
 
 export const links = {
   popular: `https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=en-US&page=1`,
