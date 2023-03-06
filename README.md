@@ -2,6 +2,6 @@
 
 ## Overview
 
-This project is a complete training to do a copy of the original Netflix site, so it is a responsive web design and use Firebase to save users data, log in and out and save favorite movies.
+This project is a miniature version of the international movie site Netflix, in which I used libraries to provide movies, and I used Firebase for the login and logout processes, and I used JavaScript libraries, the most important of which are React and Redux
 
 if you would like to visit a live demo click [here](https://netflix-clone-phi-blue.vercel.app).
