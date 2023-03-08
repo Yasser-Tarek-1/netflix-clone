@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { db } from "../firebase";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { toast } from "react-hot-toast";
 
 const SlideMovie = ({ item }) => {
-  // const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const [like, setLike] = useState(false);
   // const [saved, setSaved] = useState(false);
 
-  const userFromLocal = JSON.parse(localStorage.getItem("user"));
-
-  const movieId = doc(db, "users", `${userFromLocal?.email}`);
+  const movieId = doc(db, "users", `${user}`);
 
   const saveMovie = async () => {
     setLike((prev) => !prev);

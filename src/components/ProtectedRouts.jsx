@@ -1,16 +1,14 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const ProtectedRouts = ({ children }) => {
-  // const { user } = useSelector((state) => state.user);
-  const userFromLocal = JSON.parse(localStorage.getItem("user"));
+  const { user } = useSelector((state) => state.user);
 
-  if (userFromLocal === null) {
+  if (user === null) {
     return <Navigate to="/" />;
-  } else {
-    return children;
   }
+  return children;
 };
 
 export default ProtectedRouts;

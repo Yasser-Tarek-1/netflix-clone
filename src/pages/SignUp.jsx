@@ -7,8 +7,8 @@ import {
   db,
 } from "../firebase";
 import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
-// import { login } from "../store/userSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../store/userSlice";
 import { useNavigate } from "react-router-dom";
 
 import { setDoc, doc } from "firebase/firestore";
@@ -19,7 +19,7 @@ const SignUp = () => {
   // use state constants for the the form inputs
   const { email } = useSelector((state) => state.email);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   let navigate = useNavigate();
 
   const register = ({ email, password }) => {
@@ -36,21 +36,8 @@ const SignUp = () => {
         });
         return await updateProfile(userAuth.user, {})
           .then(
-            // Dispatch the user information for persistence in the redux state
-
-            // dispatch(
-            //   login({
-            //     email: userAuth.user.email,
-            //     uid: userAuth.user.uid,
-            //   })
-            // ),
-            localStorage.setItem(
-              "user",
-              JSON.stringify({
-                email: userAuth.user.email,
-                uid: userAuth.user.uid,
-              })
-            ),
+            dispatch(login(userAuth.user.email)),
+            localStorage.setItem("user", userAuth.user.email),
             navigate("/logged"),
             toast.success("Signup successfully")
           )
@@ -62,6 +49,10 @@ const SignUp = () => {
           toast.error("Invalid email");
         } else if (String(err).includes("weak-password")) {
           toast.error("Password should be at least 6 characters ");
+        } else if (String(err).includes("email-already-in-use")) {
+          toast.error("Email already taken");
+        } else {
+          toast.error("Something is wrong");
         }
       }
     };

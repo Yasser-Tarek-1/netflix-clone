@@ -8,25 +8,23 @@ import { Navigation } from "swiper";
 import { db } from "../firebase";
 import { updateDoc, doc } from "firebase/firestore";
 import { onSnapshot } from "firebase/firestore";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import { toast } from "react-hot-toast";
 
 const SavedShow = () => {
-  // const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const [movies, setMovies] = useState([]);
 
-  const userFromLocal = JSON.parse(localStorage.getItem("user"));
-
   useEffect(() => {
-    onSnapshot(doc(db, "users", `${userFromLocal?.email}`), (doc) => {
+    onSnapshot(doc(db, "users", `${user}`), (doc) => {
       setMovies(doc.data()?.movieLoved);
     });
-  }, [userFromLocal?.email]);
+  }, [user]);
 
-  const movieRef = doc(db, "users", `${userFromLocal?.email}`);
+  const movieRef = doc(db, "users", `${user}`);
   const deleteShow = async (Id) => {
     try {
       const result = movies.filter((item) => {

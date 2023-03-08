@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
-// import { logout } from "../store/userSlice";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/userSlice";
 import Div from "../layout/Container";
 import { toast } from "react-hot-toast";
 import Button from "../layout/Button";
+import { getAuth, signOut } from "firebase/auth";
 
 const Navbar = () => {
-  // const { user } = useSelector((state) => state.user);
-  // const dispatch = useDispatch();
-  const [loc, setloc] = useState(false);
+  const { user } = useSelector((state) => state.user);
 
-  const userFromLocal = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
+
+  const [loc, setloc] = useState(false);
 
   const location = useLocation();
   useEffect(() => {
@@ -23,10 +24,18 @@ const Navbar = () => {
     }
   }, [location.pathname]);
 
+  const auth = getAuth();
+
   const logOut = () => {
-    // dispatch(logout());
-    toast.success("Logout success");
-    localStorage.removeItem("user");
+    signOut(auth)
+      .then(() => {
+        dispatch(logout());
+        toast.success("Logout success");
+        localStorage.removeItem("user");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   return (
@@ -47,7 +56,7 @@ const Navbar = () => {
             </div>
           </Link>
           <div className="flex w-[60%] items-center justify-end">
-            {userFromLocal && (
+            {user && (
               <>
                 <Link to="/account">
                   <Button>Account</Button>
@@ -59,7 +68,7 @@ const Navbar = () => {
                 </Link>
               </>
             )}
-            {!userFromLocal && (
+            {!user && (
               <>
                 <Link to="/signup">
                   <Button>Sign Up</Button>
