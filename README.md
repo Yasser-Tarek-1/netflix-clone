@@ -1,6 +1,6 @@
 # Netflix Clone
 
-![Netflix](./src/assets/netflixClone.png)
+![Netflix](G:\my-project-for-my-portfolio\netflix-clone\src\assets\netflixClone.png)
 
 ## Overview
 
